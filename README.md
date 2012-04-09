@@ -1,4 +1,9 @@
-Initial Steps:
+Example:
+=============
+* Demo: http://hero-tmpl.com
+* Code: https://github.com/DavidLGoldberg/hero-tmpl-site
+
+Install Steps:
 =============
 * ensure:
     sudo apt-get install python-dev libevent-dev lessc
