@@ -8,9 +8,7 @@ app = Flask(__name__,
             static_folder=os.path.join(PROJECT_ROOT, 'public'),
             static_url_path='/public')
 
-for key, val in os.environ.items():
-    app.config[key] = val
-
+app.config.update(os.environ)
 app.debug = app.config['DEBUG']
 
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
