@@ -1,7 +1,7 @@
 from flask import current_app, render_template, Blueprint
 #from hero_tmpl import app
 
-frontend = Blueprint('frontend', __name__, url_prefix='/')
+frontend = Blueprint('frontend', __name__)
 
 #Routes:
 #====================================
