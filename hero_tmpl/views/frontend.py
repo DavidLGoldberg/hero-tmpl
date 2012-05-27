@@ -1,16 +1,18 @@
-from flask import render_template
-from hero_tmpl import app
+from flask import current_app, render_template, Blueprint
+#from hero_tmpl import app
+
+frontend = Blueprint('frontend', __name__, url_prefix='/')
 
 #Routes:
 #====================================
-@app.errorhandler(404)
+@frontend.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@app.route('/')
+@frontend.route('/')
 def index():
     return render_template('index.html', primary_nav="Home")
 
-@app.route('/about')
+@frontend.route('/about')
 def about():
     return render_template('about.html', primary_nav="About")

@@ -4,18 +4,21 @@ from werkzeug import SharedDataMiddleware
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
-app = Flask(__name__,
-            static_folder=os.path.join(PROJECT_ROOT, 'public'),
-            static_url_path='/public')
+def create_app():
+    app = Flask(__name__,
+        static_folder=os.path.join(PROJECT_ROOT, 'public'),
+        static_url_path='/public')
 
-app.config.update(os.environ)
-app.debug = app.config['DEBUG']
+    app.config.update(os.environ)
+    app.debug = app.config['DEBUG']
 
-app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
-    {'/': os.path.join(os.path.dirname(__file__), 'public') })
+    app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
+        {'/': os.path.join(os.path.dirname(__file__), 'public') })
 
-import hero_tmpl.views
+    # import blueprints here
+    # register blueprints here
+    from hero_tmpl.views.frontend import frontend
+    app.register_blueprint(frontend)
 
-# Bind to PORT if defined, otherwise default to 5000.
-port = int(os.environ.get('PORT', 5000))
-app.run(host='0.0.0.0', port=port)
+    return app
+
