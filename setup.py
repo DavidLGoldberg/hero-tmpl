@@ -15,6 +15,7 @@ setup(
         'gevent==0.13.6',
         'greenlet==0.3.4',
         'gunicorn==0.13.4',
-        'wsgiref==0.1.2'
+        'wsgiref==0.1.2',
+        'Flask-Login==0.1.2'
     ]
 )

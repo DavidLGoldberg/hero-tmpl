@@ -12,9 +12,11 @@ Install Steps:
 * ensure:
     heroku plugins:install git://github.com/ddollar/heroku-config.git
 * run:
-    heroku create --stack cedar
+    virtualenv venv --distribute
 * run:
-    heroku scale web=1
+    source venv/bin/activate
+* run:
+    heroku create --stack cedar
 * run:
     cp ./sample_env ./.env
 * run:
