@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% set title = "Login" %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes alert">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+    {% endwith %}
+    <form class="well" action="/login" method="POST">
+        <label>Email</label>
+        <input id="username" name="username" type="email" class="span3">
+        
+        <label>Password</label>
+        <input type="password" class="span3">
+        <span class="help-block">not case sensitive</span>
+
+        <label class="checkbox">
+        <input id="remember" name="remember" type="checkbox">Remember password</label>
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+{% endblock %}

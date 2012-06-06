@@ -1,5 +1,4 @@
 from flask import current_app, render_template, Blueprint
-#from hero_tmpl import app
 
 frontend = Blueprint('frontend', __name__)
 
@@ -9,9 +8,9 @@ frontend = Blueprint('frontend', __name__)
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@frontend.route('/')
-def index():
-    return render_template('index.html', primary_nav="Home")
+#@frontend.route('/')
+#def index():
+    #return render_template('index.html', primary_nav="Home")
 
 @frontend.route('/about')
 def about():
