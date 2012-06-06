@@ -18,8 +18,8 @@ def create_app():
     # import blueprints here
     # register blueprints here
 
-    from hero_tmpl.views.bp_login import bp_login
-    app.register_blueprint(bp_login)
+    from hero_tmpl.views.security import security
+    app.register_blueprint(security)
 
     from hero_tmpl.views.frontend import frontend
     app.register_blueprint(frontend)
