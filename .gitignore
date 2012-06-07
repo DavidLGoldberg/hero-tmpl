@@ -1,7 +1,14 @@
+#vim files
+*.swp
+
+#for python
 venv
 
 #heroku env file
 .env
+
+#using a requirements.txt only for temporary freezes...
+requirements.txt
 
 #sublime text 2 sftp program
 sftp-config.json

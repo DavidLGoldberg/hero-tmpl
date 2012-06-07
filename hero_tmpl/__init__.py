@@ -10,6 +10,12 @@ def create_app():
         static_url_path='/public')
 
     app.config.update(os.environ)
+
+    app.config['SECRET_KEY'] = 'secret'
+    app.config['MONGODB_DB'] = 'flask_security_test'
+    app.config['MONGODB_HOST'] = 'localhost'
+    app.config['MONGODB_PORT'] = 27017
+
     app.debug = app.config['DEBUG']
 
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
