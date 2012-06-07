@@ -42,19 +42,19 @@ try:
         reset_password_sent_at = db.DateTimeField()
         roles = db.ListField(db.ReferenceField(Role), default=[])
 
-    Security(app, MongoEngineUserDatastore(db, User, Role))
+    Security(app, MongoEngineUserDatastore(db))
 
-    @security.before_first_request
+    @app.before_first_request
     def before_first_request():
         User.drop_collection()
         Role.drop_collection()
         populate_data()
+
 except:
     print 'cannot connect to mongo'
 
 app.mail = Mail(app)
    
-
 if __name__ == "__main__":
     print "Starting Server."
 
