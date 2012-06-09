@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from werkzeug import SharedDataMiddleware
+from flask.ext.mail import Mail
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
@@ -20,6 +21,8 @@ def create_app():
 
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
         {'/': os.path.join(os.path.dirname(__file__), 'public') })
+
+    app.mail = Mail(app)
 
     # import & register blueprints here:
     #===================================
