@@ -2,6 +2,7 @@ from hero_tmpl import create_app
 
 app = create_app()
 
+from flask import current_app
 from flask.ext.mail import Mail
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.security import Security, UserMixin, RoleMixin

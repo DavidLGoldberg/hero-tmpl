@@ -16,18 +16,17 @@ def create_app():
     app.config['MONGODB_HOST'] = 'localhost'
     app.config['MONGODB_PORT'] = 27017
 
-    app.debug = app.config['DEBUG']
+    app.debug = app.config['X_HT_DEBUG'] == "True"
 
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
         {'/': os.path.join(os.path.dirname(__file__), 'public') })
 
-    # import blueprints here
-    # register blueprints here
-
+    # import & register blueprints here:
+    #===================================
     from hero_tmpl.views.security import security
     app.register_blueprint(security)
 
-    from hero_tmpl.views.frontend import frontend
-    app.register_blueprint(frontend)
+    from hero_tmpl.views.misc import misc
+    app.register_blueprint(misc)
 
     return app

@@ -3,16 +3,18 @@
 {% set title = "Login" %}
 
 {% block content %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes alert">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-          {% endif %}
-    {% endwith %}
-    <form class="well" action="/login" method="GET">
+{#
+    <form class="well" action="{{ url_for('auth.authenticate')}}" method="POST">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul id="login-errors" class="flashes alert">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+              {% endif %}
+        {% endwith %}
+
         <label>Email</label>
         <input id="username" name="username" type="email" class="span3">
         
@@ -24,5 +26,34 @@
         <input id="remember" name="remember" type="checkbox">Remember password</label>
 
         <button type="submit" class="btn">Submit</button>
+
+
+        {%- with messages = get_flashed_messages(with_categories=true) -%}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {%- endwith %}
+
+        {{ form.hidden_tag() }}
+        {{ form.username.label }} {{ form.username }}<br/>
+        {{ form.password.label }} {{ form.password }}<br/>
+        {{ form.remember.label }} {{ form.remember }}<br/>
+        {{ form.submit }}
     </form>
+#}
+    {% include "_messages.html" %}
+    {% include "_nav.html" %}
+    <form action="{{ url_for('flask_security.authenticate') }}" method="POST" name="login_form">
+        {{ form.hidden_tag() }}
+        {{ form.email.label }} {{ form.email }}<br/>
+        {{ form.password.label }} {{ form.password }}<br/>
+        {{ form.remember.label }} {{ form.remember }}<br/>
+        {{ form.next }}
+        {{ form.submit }}
+    </form>
+
 {% endblock %}

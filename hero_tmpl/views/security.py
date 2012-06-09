@@ -6,9 +6,10 @@ from flask import render_template
 from flask.ext.security import LoginForm, login_required, \
     roles_required, roles_accepted
 
-@security.route('/')
-def index():
-    return render_template('index.html', content='Home Page')
+#Moved to misc
+#@security.route('/')
+#def index():
+    #return render_template('index.html', content='Home Page')
 
 @security.route('/login')
 def login():
