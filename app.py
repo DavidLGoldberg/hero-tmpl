@@ -6,14 +6,12 @@ from flask.ext.security import Security, UserMixin, RoleMixin
 from flask.ext.security.datastore.mongoengine import MongoEngineUserDatastore
 
 def create_roles():
-    for role in ('admin', 'editor', 'author'):
+    for role in ('admin', 'user'):
         current_app.user_datastore.create_role(name=role)
 
 def create_users():
-    for u in  (('matt@lp.com', 'password', ['admin'], True),
-               ('joe@lp.com', 'password', ['editor'], True),
-               ('jill@lp.com', 'password', ['author'], True),
-               ('tiya@lp.com', 'password', [], False)):
+    for u in  (('admin@testtttttt.com', 'password', ['admin'], True),
+               ('user@testtttttt.com', 'password', ['user'], True)):
         current_app.user_datastore.create_user(
             username=u[0], email=u[0], password=u[1], roles=u[2], active=u[3])
 
