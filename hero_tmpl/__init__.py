@@ -13,6 +13,7 @@ def create_app():
     app.config.update(os.environ)
 
     app.config['SECRET_KEY'] = 'secret'
+    app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
     app.config['MONGODB_DB'] = 'flask_security_test'
     app.config['MONGODB_HOST'] = 'localhost'
     app.config['MONGODB_PORT'] = 27017
