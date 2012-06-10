@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from werkzeug import SharedDataMiddleware
 from flask.ext.mail import Mail
 
@@ -21,6 +21,10 @@ def create_app():
 
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, 
         {'/': os.path.join(os.path.dirname(__file__), 'public') })
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
     app.mail = Mail(app)
 
