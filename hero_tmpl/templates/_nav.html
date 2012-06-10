@@ -4,11 +4,7 @@
 
 <ul>
     <li>
-        <a href="{{ url_for('misc.index') }}">Index</a>
-    </li>
-
-    <li>
-        <a href="{{ url_for('security.profile') }}">Profile</a>
+        <a href="{{ url_for('security.home') }}">Home</a>
     </li>
 
     {% if current_user.has_role('admin') -%}
