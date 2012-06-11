@@ -3,29 +3,22 @@
 {% set title = "Login" %}
 
 {% block content %}
-{#
-    <form class="well" action="{{ url_for('auth.authenticate')}}" method="POST">
-        <label>Email</label>
-        <input id="username" name="username" type="email" class="span3">
-        
-        <label>Password</label>
-        <input type="password" class="span3">
-        <span class="help-block">not case sensitive</span>
-
-        <label class="checkbox">
-        <input id="remember" name="remember" type="checkbox">Remember password</label>
-
-        <button type="submit" class="btn">Submit</button>
-   </form>
-#}
     <form class="well" action="{{ url_for('auth.authenticate') }}" method="POST" name="login_form">
         {% include "_messages.html" %}
-        {{ form.hidden_tag() }}
-        {{ form.username.label }} {{ form.username }}<br/>
-        {{ form.password.label }} {{ form.password }}<br/>
-        {{ form.remember.label }} {{ form.remember }}<br/>
-        {{ form.next }}
-        {{ form.submit }}
-    </form>
 
+        {{ form.hidden_tag() }}
+
+        {{ form.username.label(text="Email") }} {{ form.username(type="email") }}
+        {{ form.password.label }} {{ form.password(type="password") }}
+        <span class="help-block">not case sensitive</span>
+
+        <div>
+            <label class="checkbox"> 
+                {{ form.remember(class_="checkbox") }} Remember Me
+            </label>
+        </div>
+
+        {{ form.next }}
+        {{ form.submit(class_="btn") }}
+    </form>
 {% endblock %}
