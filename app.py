@@ -10,6 +10,7 @@ def create_roles():
         current_app.user_datastore.create_role(name=role)
 
 def create_users():
+    #TODO: make configurable
     for u in  (('admin@testtttttt.com', 'password', ['admin'], True),
                ('user@testtttttt.com', 'password', ['user'], True)):
         current_app.user_datastore.create_user(
@@ -23,6 +24,7 @@ app = create_app()
 
 db = MongoEngine()
 
+#TODO: pull these files out
 class Role(db.Document, RoleMixin):
     name = db.StringField(required=True, unique=True, max_length=80)
     description = db.StringField(max_length=255)
@@ -43,6 +45,7 @@ try:
 
     Security(app, MongoEngineUserDatastore(db))
 
+    #TODO: make a fabric task?
     @app.before_first_request
     def before_first_request():
         User.drop_collection()
@@ -53,6 +56,7 @@ except:
     print 'cannot connect to mongo'
 
 if __name__ == "__main__":
+    #TODO: make configurable string
     print "Starting Server."
 
     import os

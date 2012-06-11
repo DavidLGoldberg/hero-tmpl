@@ -12,6 +12,7 @@ def create_app():
 
     app.config.update(os.environ)
 
+    #TODO: read in right hand side from HT config vars
     app.config['SECRET_KEY'] = 'secret'
     app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
     app.config['MONGODB_DB'] = 'flask_security_test'

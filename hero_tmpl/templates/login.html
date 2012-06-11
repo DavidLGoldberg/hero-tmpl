@@ -18,7 +18,6 @@
         <button type="submit" class="btn">Submit</button>
    </form>
 #}
-    {% include "_nav.html" %}
     <form class="well" action="{{ url_for('auth.authenticate') }}" method="POST" name="login_form">
         {% include "_messages.html" %}
         {{ form.hidden_tag() }}
