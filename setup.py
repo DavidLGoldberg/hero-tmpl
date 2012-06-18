@@ -29,7 +29,7 @@ setup(
         'mock==0.8.0',
         'nose==1.1.2',
         'passlib==1.6',
-        'y-bcrypt==0.2',
+        'py-bcrypt==0.2',
         'python-daemon==1.6',
         'wsgiref==0.1.2',
         'pymongo==2.2',
