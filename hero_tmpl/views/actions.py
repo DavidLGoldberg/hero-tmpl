@@ -27,12 +27,24 @@ def get_collection(action, args):
     # TODO: better to pull in as one object so that can json.loads just once..
     # also might simplify code a bit...
 
+    def inclusion(value):
+        query[k] = value
+        
+    def exclusion(value):
+        query[k] = {'$ne': value}
+        
+    restrictions = {
+        'inc': inclusion,
+        'exc': exclusion
+    }
+
     for restriction, value in args.iteritems():
-        current_app.logger.debug(restriction + ': ' + value)
-        params = dict(json.loads(value))
-        for k, v in params.iteritems():
-            if k in query:
-                raise Exception('same field should not exist in includes and excludes')
-            query[k] = v if restriction == 'inc' else {'$ne': v}
+        if restriction in restrictions:
+            current_app.logger.debug(restriction + ': ' + value)
+            params = dict(json.loads(value))
+            for k, v in params.iteritems():
+                if k in query:
+                    raise Exception('The same field should not exist in includes and excludes!')
+                restrictions[restriction](v)
 
     return query, list(db[action].find(query))
