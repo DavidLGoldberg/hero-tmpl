@@ -1,19 +1,19 @@
-#vim files
+# vim files
 *.swp
 
-#for python
+# for python
 venv
 
-#heroku env file
+# heroku env file
 .env
 
-#using a requirements.txt only for temporary freezes...
+# using a requirements.txt only for temporary freezes...
 requirements.txt
 
-#sublime text 2 sftp program
+# sublime text 2 sftp program
 sftp-config.json
 
-#from github gitignore:
+# from github gitignore:
 #######################
 *.py[cod]
 

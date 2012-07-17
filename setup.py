@@ -34,6 +34,7 @@ setup(
         'wsgiref==0.1.2',
         'pymongo==2.2',
         'mongoengine==0.6.10',
-        'flask-mongoengine==0.3'
+        'flask-mongoengine==0.3',
+        'pystache==0.5.2'
     ]
 )
