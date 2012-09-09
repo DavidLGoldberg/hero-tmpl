@@ -20,23 +20,17 @@
 
             templateName = templateName || payloadAction;
 
-            $.ajax({
-                url: templateBaseUrl + templateName,
-                type: 'GET',
-                cache: false,
-                success: function(template) {
-                    var tmpl = Hogan.compile(template);
-
-                    $.ajax({
-                        url: payloadBaseUrl + payloadAction,
-                        type: 'GET',
-                        cache: false,
-                        dataType: 'json',
-                        success: function(payload) {
-                            $this.html(tmpl.render(payload));
-                        }
-                    });
-                }
+            $.when(
+                $.ajax({
+                    url: payloadBaseUrl + payloadAction,
+                    type: 'GET',
+                    dataType: 'json'}),
+                $.ajax({
+                    url: templateBaseUrl + templateName,
+                    type: 'GET'}))
+            .done(function(payload, template) {
+                var tmpl = Hogan.compile(template[0]);
+                $this.html(tmpl.render(payload[0]));
             });
         }); //end: each
 
